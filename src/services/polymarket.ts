@@ -66,7 +66,7 @@ export interface ScalpingMarket extends Omit<ParsedMarket, 'details'> {
     details: ScalpingMarketDetails;
 }
 
-const LOCAL_API_URL = '/api/local';
+const LOCAL_API_URL = '/api';
 
 export const getTopMarkets = async (limit = 20): Promise<ParsedMarket[]> => {
     try {

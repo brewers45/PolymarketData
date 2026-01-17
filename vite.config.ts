@@ -17,10 +17,10 @@ export default defineConfig({
         changeOrigin: true,
         rewrite: (path) => path.replace(/^\/api\/clob/, ''),
       },
-      '/api/local': {
+      '/api': {
         target: 'http://localhost:5202',
         changeOrigin: true,
-        rewrite: (path) => path.replace(/^\/api\/local/, '/api'),
+        rewrite: (path) => path.replace(/^\/api/, ''),
       },
     },
   },
