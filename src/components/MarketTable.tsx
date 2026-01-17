@@ -31,7 +31,7 @@ export const MarketTable: React.FC = () => {
 
         const fetchData = async () => {
             try {
-                const topMarkets = await getTopMarkets(30);
+                const topMarkets = await getTopMarkets(10);
 
                 if (isMounted) {
                     setMarkets(topMarkets);

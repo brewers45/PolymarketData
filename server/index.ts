@@ -407,10 +407,14 @@ const getTopMarkets = async (limit = 20) => {
                 order: 'volume24hr',
                 ascending: false,
             },
+            timeout: 5000,
         });
+
+        console.log(`Fetched ${response.data.length} markets. Enhancing with order book data...`);
 
         // Enhance with Order Book Data
         const enhancedPromise = response.data.map(async (m) => {
+            console.log(`Processing market: ${m.slug}`);
             let bestBidDepth = 0;
             let bestAskDepth = 0;
             let spreadData = { spread: null as number | null, bestBid: null as number | null, bestAsk: null as number | null };
@@ -430,9 +434,11 @@ const getTopMarkets = async (limit = 20) => {
                 try {
                     const tokenId = clobTokenIds[0];
                     const bookRes = await axios.get<OrderBook>(`${CLOB_API_URL}/book`, {
-                        params: { token_id: tokenId }
+                        params: { token_id: tokenId },
+                        timeout: 2000,
                     });
                     const book = bookRes.data;
+                    console.log(`Fetched book for ${m.slug}`);
 
                     if (book.bids.length && book.asks.length) {
                         // Sort Bids Descending
@@ -490,9 +496,11 @@ const getTopMarkets = async (limit = 20) => {
             };
         });
 
-        return Promise.all(enhancedPromise);
-    } catch (error) {
-        console.error("Error in getTopMarkets:", error);
+        const results = await Promise.all(enhancedPromise);
+        console.log(`Total enhanced markets: ${results.length}`);
+        return results;
+    } catch (error: any) {
+        console.error("Error in getTopMarkets:", error.message || error);
         return [];
     }
 };

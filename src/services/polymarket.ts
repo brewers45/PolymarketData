@@ -74,9 +74,13 @@ export const getTopMarkets = async (limit = 20): Promise<ParsedMarket[]> => {
             params: { limit },
         });
 
+        console.log(`Frontend: Received ${response.data.markets.length} markets from ${LOCAL_API_URL}/markets`);
         return response.data.markets;
-    } catch (error) {
-        console.error('Error fetching markets:', error);
+    } catch (error: any) {
+        console.error('Frontend Error fetching markets from local API:', error.message || error);
+        if (error.response) {
+            console.error('Server responded with:', error.response.status, error.response.data);
+        }
         return [];
     }
 };
