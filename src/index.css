@@ -1,0 +1,103 @@
+:root {
+  font-family: 'Inter', system-ui, Avenir, Helvetica, Arial, sans-serif;
+  line-height: 1.5;
+  font-weight: 400;
+
+  color-scheme: light dark;
+  color: rgba(255, 255, 255, 0.87);
+  background-color: #0f0f13;
+
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+
+  --primary-color: #2D9CDB;
+  --secondary-color: #BB6BD9;
+  --surface-color: #1a1b23;
+  --surface-hover: #242530;
+  --text-primary: #ffffff;
+  --text-secondary: #a1a1aa;
+  --border-color: #3f3f46;
+  --positive: #27ae60;
+  --negative: #eb5757;
+}
+
+body {
+  margin: 0;
+  display: flex;
+  place-items: flex-start;
+  min-width: 320px;
+  min-height: 100vh;
+  justify-content: center;
+  background-image:
+    radial-gradient(circle at 10% 20%, rgba(45, 156, 219, 0.05) 0%, transparent 20%),
+    radial-gradient(circle at 90% 80%, rgba(187, 107, 217, 0.05) 0%, transparent 20%);
+}
+
+#root {
+  max-width: 1280px;
+  width: 100%;
+  margin: 0 auto;
+  padding: 2rem;
+  padding-top: 1rem;
+  text-align: center;
+}
+
+.glass-panel {
+  background: rgba(26, 27, 35, 0.7);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.3);
+  border-radius: 12px;
+}
+
+h1 {
+  font-size: 3.2em;
+  line-height: 1.1;
+  background: -webkit-linear-gradient(45deg, var(--primary-color), var(--secondary-color));
+  background-clip: text;
+  /* Standard property */
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  margin-bottom: 2rem;
+}
+
+/* Scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--surface-color);
+}
+
+::-webkit-scrollbar-thumb {
+  background: #555;
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #888;
+}
+
+/* Table Styles */
+.table-container {
+  overflow-x: auto;
+  margin-top: 2rem;
+}
+
+.table-row {
+  cursor: pointer;
+  transition: background-color 0.2s;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.03);
+}
+
+.table-row:hover {
+  background-color: rgba(255, 255, 255, 0.05);
+}
+
+.table-row:last-child {
+  border-bottom: none;
+}
