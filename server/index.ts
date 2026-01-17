@@ -638,7 +638,7 @@ const getScalpingMarkets = async (limit = 50) => {
 // EXPRESS ENDPOINTS
 // ============================================================================
 
-app.get('/markets', async (req, res) => {
+app.get('/api/markets', async (req, res) => {
     try {
         const limit = req.query.limit ? parseInt(req.query.limit as string) : 20;
         const markets = await getTopMarkets(limit);
@@ -652,7 +652,7 @@ app.get('/markets', async (req, res) => {
     }
 });
 
-app.get('/scalping-markets', async (req, res) => {
+app.get('/api/scalping-markets', async (req, res) => {
     try {
         // Fetch more candidates to filter down
         const markets = await getScalpingMarkets(30);
