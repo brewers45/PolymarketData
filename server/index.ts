@@ -655,7 +655,7 @@ app.get('/api/markets', async (req, res) => {
 app.get('/api/scalping-markets', async (req, res) => {
     try {
         // Fetch more candidates to filter down
-        const markets = await getScalpingMarkets(30);
+        const markets = await getScalpingMarkets(50);
         res.json({
             timestamp: new Date().toISOString(),
             count: markets.length,
