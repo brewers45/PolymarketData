@@ -2,10 +2,17 @@ import express from 'express';
 import cors from 'cors';
 import axios from 'axios';
 
-const app = express();
+export const app = express();
 const PORT = 5202;
 
 app.use(cors());
+
+// Only start the server if we're not running as a function
+if (process.env.NODE_ENV !== 'production' && !process.env.NETLIFY) {
+    app.listen(PORT, () => {
+        console.log(`Polymarket Data Server running on http://localhost:${PORT}`);
+    });
+}
 
 const GAMMA_API_URL = 'https://gamma-api.polymarket.com';
 const CLOB_API_URL = 'https://clob.polymarket.com';
@@ -651,8 +658,4 @@ app.get('/api/scalping-markets', async (req, res) => {
     }
 });
 
-app.listen(PORT, () => {
-    console.log(`Polymarket Data Server running on http://localhost:${PORT}`);
-    console.log(`Endpoint: http://localhost:${PORT}/api/markets`);
-    console.log(`Scalping: http://localhost:${PORT}/api/scalping-markets`);
-});
+// End of file
